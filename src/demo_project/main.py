@@ -1,14 +1,14 @@
-def f(x: int, y: int) -> float:
-    a = x + y
-    return a
+def g(a: int, b: int) -> float:
+    c = a + b
+    return c
 
 
-def g() -> None:
+def f() -> None:
     a = 11
-    b = 22
-    c = f(a, b)
+    b = 12
+    c = g(11, 222)
     print(c)
 
 
 if __name__ == "__main__":
-    g()
+    f()
