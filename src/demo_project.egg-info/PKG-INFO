@@ -1,0 +1,6 @@
+Metadata-Version: 2.4
+Name: demo_project
+Version: 0.1.0
+Summary: My first engineered Python project
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
