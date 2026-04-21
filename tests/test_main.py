@@ -1,5 +1,4 @@
 from demo_project.main import f
-
-
 def test() -> None:
-    assert f(11, 12) == 23
+    assert f(80) == "the grade of your score is B"
+    
