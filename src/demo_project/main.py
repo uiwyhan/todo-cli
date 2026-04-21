@@ -17,6 +17,9 @@ def g() -> None:
     except ValueError as e:
         print(e)
         return
+    if b < 0 or b > 100:
+        print("invalid score")
+        return
     c = f(b)
     print(f"score:{b},grade:{c}")
 
