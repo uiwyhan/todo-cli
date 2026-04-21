@@ -1,20 +1,20 @@
-def f(x: int) -> str:
-    if x >= 90:
-        return "the grade of your score is A"
-    if 80 <= x < 90:
-        return "the grade of your score is B"
-    if 70 <= x < 80:
-        return "the grade of your score is C"
-    if 60 <= x < 70:
-        return "the grade of your score is D"
-    if x < 60:
-        return "the grade of your score is D"
+def f(a: int) -> str:
+    if a >= 90:
+        return "A"
+    if a >= 80:
+        return "B"
+    if a >= 70:
+        return "C"
+    if a >= 60:
+        return "D"
+    return "E"
 
 
 def g() -> None:
-    a = 89
-    b = f(a)
-    print(b)
+    a = input("please input your score:")
+    b = int(a)
+    c = f(b)
+    print(c)
 
 
 if __name__ == "__main__":
