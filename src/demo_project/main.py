@@ -1,4 +1,4 @@
-def f(a) -> str:
+def f(a: int) -> str:
     if a >= 90:
         return "A"
     if a >= 80:
@@ -10,19 +10,27 @@ def f(a) -> str:
     return "E"
 
 
-def g() -> None:
+def g(a: str) -> int:
+    return int(a)
+
+
+def h(a: int) -> bool:
+    return 0 <= a <= 100
+
+
+def k() -> None:
     a = input("please input your score:")
     try:
-        b = int(a)
+        b = g(a)
     except ValueError as e:
         print(e)
         return
-    if b < 0 or b > 100:
-        print("invalid score")
+    if not h(b):
+        print("Invalid value.Please input from 0 to 100.")
         return
     c = f(b)
-    print(f"score:{b},grade:{c}")
+    print(f"grade:{c},score:{b}")
 
 
 if __name__ == "__main__":
-    g()
+    k()
