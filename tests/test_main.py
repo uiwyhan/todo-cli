@@ -1,5 +1,5 @@
-from demo_project.main import g
+from demo_project.main import f
 
 
 def test() -> None:
-    assert g(11, 12) == 23
+    assert f(11, 12) == 23
