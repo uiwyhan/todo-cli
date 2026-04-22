@@ -11,31 +11,37 @@ def f(a: int) -> str:
 
 
 def g(a: str) -> int:
-    b = int(a)
-    return b
+    return int(a)
 
 
 def h(a: int) -> bool:
     return 0 <= a <= 100
 
 
-def k() -> None:
+def k() -> bool:
+    a = input("please input your score:")
+    if a == "q":
+        print("it's over")
+        return True
+    try:
+        b = g(a)
+    except ValueError as e:
+        print(e, "Invalid input.Please enter a numerber.")
+        return False
+    if not h(b):
+        print("Invalid input. Please enter a number from 0 to 100.")
+        return False
+    c = f(b)
+    print(f"score: {b}, grade: {c}")
+    return False
+
+
+def d() -> None:
     while True:
-        a = input("please input your score:")
-        if a == "q":
-            print("it's over")
+        a = k()
+        if a:
             break
-        try:
-            b = g(a)
-        except ValueError as e:
-            print(e, "Invalid input. Please enter a number.")
-            continue
-        if not h(b):
-            print("Invalid input. please enter a number from 0 to 100.")
-            continue
-        c = f(b)
-        print(f"score: {b},grade: {c}")
 
 
 if __name__ == "__main__":
-    k()
+    d()
