@@ -11,7 +11,8 @@ def f(a: int) -> str:
 
 
 def g(a: str) -> int:
-    return int(a)
+    b = int(a)
+    return b
 
 
 def h(a: int) -> bool:
@@ -19,17 +20,21 @@ def h(a: int) -> bool:
 
 
 def k() -> None:
-    a = input("please input your score:")
-    try:
-        b = g(a)
-    except ValueError as e:
-        print(e)
-        return
-    if not h(b):
-        print("Invalid value.Please input from 0 to 100.")
-        return
-    c = f(b)
-    print(f"grade:{c},score:{b}")
+    while True:
+        a = input("please input your score:")
+        if a == "q":
+            print("it's over")
+            break
+        try:
+            b = g(a)
+        except ValueError as e:
+            print(e, "Invalid input. Please enter a number.")
+            continue
+        if not h(b):
+            print("Invalid input. please enter a number from 0 to 100.")
+            continue
+        c = f(b)
+        print(f"score: {b},grade: {c}")
 
 
 if __name__ == "__main__":
