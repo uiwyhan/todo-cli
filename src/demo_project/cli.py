@@ -12,7 +12,7 @@ def k() -> bool:
         print(e, "Invalid input. please enter a number.")
         return False
     if not g(b):
-        print("Invalid input. Please enter a number from 0 to 100.")
+        print("Invalid input. please enter a number from 0 to 100.")
         return False
     c = f(b)
     print(f"score: {b}, grade: {c}")
@@ -24,3 +24,7 @@ def d() -> None:
         a = k()
         if a:
             break
+
+
+if __name__ == "__main__":
+    d()
