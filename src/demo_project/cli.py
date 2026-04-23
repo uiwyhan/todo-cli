@@ -4,7 +4,7 @@ from demo_project.massage import (
     MASSAGE_INVALID_INPUT,
     MASSAGE_INVALID_INPUT_RANGE,
     PROMPT_SCORE,
-    massage,
+    massage1,
 )
 
 
@@ -22,7 +22,7 @@ def k() -> bool:
         print(MASSAGE_INVALID_INPUT_RANGE)
         return False
     c = f(b)
-    print(massage(b, c))
+    print(massage1(b, c))
     return False
 
 
