@@ -1,21 +1,28 @@
 from demo_project.grade import f, g, h
+from demo_project.massage import (
+    MASSAGE_GOODBYE,
+    MASSAGE_INVALID_INPUT,
+    MASSAGE_INVALID_INPUT_RANGE,
+    PROMPT_SCORE,
+    massage,
+)
 
 
 def k() -> bool:
-    a = input("please input your score:")
+    a = input(PROMPT_SCORE)
     if a == "q":
-        print("it's over")
+        print(MASSAGE_GOODBYE)
         return True
     try:
         b = h(a)
-    except ValueError as e:
-        print(e, "Invalid input. please enter a number.")
+    except ValueError:
+        print(MASSAGE_INVALID_INPUT)
         return False
     if not g(b):
-        print("Invalid input. please enter a number from 0 to 100.")
+        print(MASSAGE_INVALID_INPUT_RANGE)
         return False
     c = f(b)
-    print(f"score: {b}, grade: {c}")
+    print(massage(b, c))
     return False
 
 
@@ -24,7 +31,3 @@ def d() -> None:
         a = k()
         if a:
             break
-
-
-if __name__ == "__main__":
-    d()
