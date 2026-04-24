@@ -1,10 +1,14 @@
-PROMPT_SCORE = "please input your score:"
+MENU = "\n=== Score Manager ===\n1.add score\n2.show summary\n3.clear scores\n4.quit\n"
+PROMPT_MENU_CHOICE = "Choose an option:"
+PROMPT_MENU_SCORE = "Enter score:"
 MASSAGE_GOODBYE = "it's over"
-MASSAGE_INVALID_INPUT = "Invalid input. please enter a number."
+MASSAGE_INVALID_INPUT = "Invalid input.please enter a number."
 MASSAGE_INVALID_INPUT_RANGE = "Invalid input. please enter a number from 0 to 100."
+MASSAGE_NO_SCORE = "No scores available."
+MASSAGE_SCORES_CLEARED = "Scores cleared."
 
 
-def massage1(a, b):
+def massage1(a, b) -> str:
     return f"score: {a}, grade: {b}"
 
 
@@ -15,8 +19,8 @@ def massage2(
     lowest: int,
 ) -> str:
     return (
-        f"you entered {count} scores\n",
-        f"average score: {average:.2f}\n",
-        f"highest score: {highest}\n",
-        f"lowest score: {lowest}",
+        f"You entered {count} scores\n"
+        f"Average: {average}\n"
+        f"Highest: {highest}\n"
+        f"Lowest: {lowest}\n"
     )

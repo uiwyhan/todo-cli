@@ -1,10 +1,10 @@
-def average1(a: list[int]) -> float:
+def get_average(a: list[int]) -> float:
     return sum(a) / len(a)
 
 
-def highest1(a: list[int]) -> float:
+def get_highest(a: list[int]) -> int:
     return max(a)
 
 
-def lowest1(a: list[int]) -> float:
+def get_lowest(a: list[int]) -> int:
     return min(a)
