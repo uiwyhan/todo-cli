@@ -4,14 +4,24 @@ from demo_project.massage import (
     MASSAGE_INVALID_INPUT,
     MASSAGE_INVALID_INPUT_RANGE,
     PROMPT_SCORE,
-    massage1,
+    massage2,
 )
+from demo_project.states import average1, highest1, lowest1
 
 
-def k() -> bool:
+def k(scores: list[int]) -> bool:
     a = input(PROMPT_SCORE)
     if a == "q":
         print(MASSAGE_GOODBYE)
+        if scores:
+            print(
+                massage2(
+                    count=len(scores),
+                    average=average1(scores),
+                    highest=highest1(scores),
+                    lowest=lowest1(scores),
+                )
+            )
         return True
     try:
         b = h(a)
@@ -21,13 +31,19 @@ def k() -> bool:
     if not g(b):
         print(MASSAGE_INVALID_INPUT_RANGE)
         return False
+    scores.append(b)
     c = f(b)
-    print(massage1(b, c))
+    print(c)
     return False
 
 
 def d() -> None:
+    a: list[int] = []
     while True:
-        a = k()
-        if a:
+        b = k(a)
+        if b:
             break
+
+
+if __name__ == "__main__":
+    d()

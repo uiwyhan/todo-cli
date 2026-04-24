@@ -3,15 +3,17 @@ from demo_project.cli import k
 
 def test1(monkeypatch, capsys) -> None:
     monkeypatch.setattr("builtins.input", lambda _: "q")
-    a = k()
-    b = capsys.readouterr()
-    assert a is True
-    assert "it's over" in b.out
+    a: list[int] = []
+    b = k(a)
+    c = capsys.readouterr()
+    assert b is True
+    assert "it's over" in c.out
 
 
 def test2(monkeypatch, capsys) -> None:
-    monkeypatch.setattr("builtins.input", lambda _: "111")
-    a = k()
-    b = capsys.readouterr()
-    assert a is False
-    assert "Invalid input.please enter a number from 0 to 100."
+    monkeypatch.setattr("builtins.input", lambda _: "abc")
+    a: list[int] = []
+    b = k(a)
+    c = capsys.readouterr()
+    assert b is False
+    assert "Invalid input. please enter a number.\n" in c.out
