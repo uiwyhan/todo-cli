@@ -1,49 +1,72 @@
 from demo_project.grade import f, g, h
 from demo_project.massage import (
-    MASSAGE_GOODBYE,
     MASSAGE_INVALID_INPUT,
     MASSAGE_INVALID_INPUT_RANGE,
-    PROMPT_SCORE,
+    MASSAGE_MENE_INVALID,
+    MASSAGE_NO_SCORE,
+    MASSAGE_SCORES_CLEARED,
+    MENU,
+    PROMPT_MENU_CHOICE,
+    PROMPT_MENU_SCORE,
+    massage1,
     massage2,
 )
-from demo_project.states import average1, highest1, lowest1
+from demo_project.states import get_average, get_highest, get_lowest
 
 
-def k(scores: list[int]) -> bool:
-    a = input(PROMPT_SCORE)
-    if a == "q":
-        print(MASSAGE_GOODBYE)
-        if scores:
-            print(
-                massage2(
-                    count=len(scores),
-                    average=average1(scores),
-                    highest=highest1(scores),
-                    lowest=lowest1(scores),
-                )
-            )
-        return True
+def add_score(a: list[int]) -> None:
+    b = input(PROMPT_MENU_SCORE)
     try:
-        b = h(a)
+        c = h(b)
     except ValueError:
         print(MASSAGE_INVALID_INPUT)
-        return False
-    if not g(b):
+        return
+    if not g(c):
         print(MASSAGE_INVALID_INPUT_RANGE)
-        return False
-    scores.append(b)
-    c = f(b)
-    print(c)
-    return False
+        return
+    a.append(c)
+    d = f(c)
+    print(massage1(c, d))
+    return
 
 
-def d() -> None:
+def summary_scores(a: list[int]) -> None:
+    if not a:
+        print(MASSAGE_NO_SCORE)
+        return
+    if a:
+        print(
+            massage2(
+                count=len(a),
+                average=get_average(a),
+                highest=get_highest(a),
+                lowest=get_lowest(a),
+            )
+        )
+        return
+
+
+def clear_scores(a: list[int]) -> None:
+    a.clear()
+    print(MASSAGE_SCORES_CLEARED)
+    return
+
+
+def k() -> None:
     a: list[int] = []
     while True:
-        b = k(a)
-        if b:
+        print(MENU)
+        b = input(PROMPT_MENU_CHOICE)
+        if b == "1":
+            add_score(a)
+            return
+        if b == "2":
+            summary_scores(a)
+            return
+        if b == "3":
+            clear_scores(a)
+            return
+        if b == "4":
             break
-
-
-if __name__ == "__main__":
-    d()
+        print(MASSAGE_MENE_INVALID)
+        return
