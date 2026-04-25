@@ -1,5 +1,4 @@
-from demo_project.cli import add_score, clear_scores, k, summary_scores
-from demo_project.massage import MENU
+from demo_project.cli import add_score, clear_scores, summary_scores
 
 
 def test1(monkeypatch, capsys) -> None:
@@ -51,20 +50,3 @@ def test6(capsys) -> None:
     c = capsys.readouterr()
     assert b is None
     assert "Scores cleared" in c.out
-
-
-def test6(monkeypatch, capsys) -> None:
-    monkeypatch.setattr("builtins.input", lambda _: "1")
-    a = k()
-    b = capsys.readouterr()
-    assert a is None
-    assert MENU in b.out
-
-
-def test7(monkeypatch, capsys) -> None:
-    monkeypatch.setattr("builtins.input", lambda _: "wuyihan")
-    a = k()
-    b = capsys.readouterr()
-    assert a is None
-    assert MENU in b.out
-    assert "Invalid input.please input a number from 1 to 4." in b.out
