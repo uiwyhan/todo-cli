@@ -59,11 +59,11 @@ def k() -> None:
         b = input(PROMPT_MENU_CHOICE)
         if b == "1":
             add_score(a)
-        if b == "2":
+        elif b == "2":
             summary_scores(a)
-        if b == "3":
+        elif b == "3":
             clear_scores(a)
-        if b == "4":
+        elif b == "4":
             break
         else:
             print(MASSAGE_MENE_INVALID)
