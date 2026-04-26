@@ -1,0 +1,5 @@
+from demo_project.storage import scores_load, scores_save
+def test1() ->None:
+    assert scores_load() is []
+def test2()->None:
+    assert scores_save is None
