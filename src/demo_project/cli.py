@@ -67,7 +67,3 @@ def k() -> None:
             break
         else:
             print(MASSAGE_MENE_INVALID)
-
-
-if __name__ == "__main__":
-    k()
