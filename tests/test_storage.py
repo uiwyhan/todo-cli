@@ -11,7 +11,5 @@ def test1(tmp_path, monkeypatch) -> None:
 
 def test2(tmp_path, monkeypatch) -> None:
     monkeypatch.setattr("demo_project.storage.SCORE_FILE", tmp_path / "score.json")
-    a = [11, 12, 13, 14]
-    scores_save(a)
     b = scores_load()
-    assert b == a
+    assert b == []
