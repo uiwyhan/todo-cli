@@ -1,9 +1,8 @@
-from demo_project.storage import scores_load
+from demo_project.storage import scores_load, scores_save
 
 
 def test1() -> None:
-    assert scores_load == []
-
-
-def test2() -> None:
-    assert scores_load is None
+    a = [11, 12, 13, 14]
+    scores_save(a)
+    c = scores_load()
+    assert c == [11, 12, 13, 14]

@@ -12,6 +12,7 @@ from demo_project.massage import (
     massage2,
 )
 from demo_project.states import get_average, get_highest, get_lowest
+from demo_project.storage import scores_load, scores_save
 
 
 def add_score(a: list[int]) -> None:
@@ -25,6 +26,7 @@ def add_score(a: list[int]) -> None:
         print(MASSAGE_INVALID_INPUT_RANGE)
         return
     a.append(c)
+    scores_save(a)
     d = f(c)
     print(massage1(c, d))
     return
@@ -48,12 +50,13 @@ def summary_scores(a: list[int]) -> None:
 
 def clear_scores(a: list[int]) -> None:
     a.clear()
+    scores_save(a)
     print(MASSAGE_SCORES_CLEARED)
     return
 
 
 def k() -> None:
-    a: list[int] = []
+    a: list[int] = scores_load()
     while True:
         print(MENU)
         b = input(PROMPT_MENU_CHOICE)
