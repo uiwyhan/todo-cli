@@ -1,21 +1,18 @@
-from demo_project.service import f, g, h
+from pathlib import Path
+
+from demo_project.service import f, g
+from demo_project.storage import save_storage
 
 
-def k():
+def main() -> None:
     a = []
     f(a, "wuyihan")
     f(a, "wuyiqian")
-    f(a, "wuyilin")
-    for i in a:
-        print(i.a, i.b, i.c)
+    f(a, "heyuhua")
     g(a, 1)
     g(a, 3)
-    for i in a:
-        print(i.a, i.b, i.c)
-    h(a, 2)
-    for i in a:
-        print(i.a, i.b, i.c)
+    save_storage(Path("aaa.json"), a)
 
 
 if __name__ == "__main__":
-    k()
+    main()
