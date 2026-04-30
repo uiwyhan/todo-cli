@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+
 from demo_project.models import s
 
 
