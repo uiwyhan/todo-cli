@@ -1,17 +1,17 @@
 [
-   {
-      "a": 1,
-      "b": "wuyihan",
-      "c": true
-   },
-   {
-      "a": 2,
-      "b": "wuyiqian",
-      "c": false
-   },
-   {
-      "a": 3,
-      "b": "heyuhua",
-      "c": true
-   }
+    {
+        "a": 1,
+        "b": "wuyihan",
+        "c": true
+    },
+    {
+        "a": 2,
+        "b": "wuyiqian",
+        "c": false
+    },
+    {
+        "a": 3,
+        "b": "heyuhua",
+        "c": true
+    }
 ]
