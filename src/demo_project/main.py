@@ -1,56 +1,76 @@
-import sys
+import argparse
 from pathlib import Path
-from demo_project.service import f,g,h
+
 from demo_project.models import s
-from demo_project.storage import save_storage, load_storage
-import json
-a = Path("wuyihan.json")
-def main1(x:list) ->list[s]:
+from demo_project.service import f as service_f
+from demo_project.service import g, h
+from demo_project.storage import load_storage, save_storage
+
+
+def main1(x: list[s]) -> None:
     if not x:
-        print("the list of tasks is nothing")
-        return []
-    for i in x:
-        print(
-           f"the coding is {i.a}, the title is {i.b}, the status of task is {i.c}"
-        )
-def main2()->None:
-    b:list[s] = load_storage(a)
-    c:list = sys.argv
-    if len(c)<2:
-        print("enter your command")
+        print("there is no task")
     else:
-        d:str = c[1]
-        if d == "add":
-            print("you select the command 'add'")
-            if len(c)<3:
-                print("please enter your title")
+        for i in x:
+            print(i.a, i.b, i.c)
+
+
+def main2() -> None:
+    a: Path = Path("www.json")
+    b: list[s] = load_storage(a)
+    c = argparse.ArgumentParser()
+    c.add_argument("command", nargs="?")
+    c.add_argument("value", nargs="?")
+    d = c.parse_args()
+    if not d.command:
+        print("please enter a command")
+        return
+    else:
+        print("your command is ", d.command)
+        if d.command == "add":
+            if not d.value:
+                print("please input a value")
+                return
             else:
-                d:str = c[2]
-                e = f(b,d)
-                save_storage(a,b)
-                print(f"you add the task ",e)
-        elif d == "list":
-            print("you enter the command 'list'")
-            d = main1(b)
-        elif d == "done":
-            print("your command is ", d)
-            if len(c)<3:
-                print("please input your coding for your command 'done'")
+                e = str(d.value)
+                i = service_f(b, e)
+                print("you add a task: ", i)
+                save_storage(a, b)
+                return
+        elif d.command == "list":
+            main1(b)
+            return
+        elif d.command == "done":
+            if not d.value:
+                print("please input a value")
+                return
             else:
-                d = int(c[2])
-                d = g(b,d)
-                save_storage(a,b)
-                print("you have done the task", d)
-        elif d == "delete":
-            print("you enter the command ", d)
-            if len(c)<3:
-                print("please enter the coding for the command 'delete'")
+                try:
+                    e = int(d.value)
+                except ValueError as error:
+                    print(f"{e},{error},please input a number for value")
+                    return
+                m = g(b, e)
+                print(f"the task {m} is alread done")
+                save_storage(a, b)
+                return
+        elif d.command == "delete":
+            if not d.value:
+                print("please input a value")
+                return
             else:
-                d = int(c[2])
-                d = h(b,d)
-                save_storage(a,b)
-                print(f"you have delete the task named {d}")
-        else:
-            print("please input correct command") 
+                try:
+                    e = int(d.value)
+                except ValueError:
+                    print("please input a number")
+                    return
+                m = h(b, e)
+                print(f"you delete the task {m}")
+                save_storage(a, b)
+                return
+        print("please input a proper command")
+        return
+
+
 if __name__ == "__main__":
     main2()
