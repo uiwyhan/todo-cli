@@ -15,18 +15,8 @@
         "c": true
     },
     {
-        "a": 7,
-        "b": "www",
+        "a": 10,
+        "b": "wuyihan",
         "c": true
-    },
-    {
-        "a": 8,
-        "b": "aaa",
-        "c": false
-    },
-    {
-        "a": 9,
-        "b": "0",
-        "c": false
     }
 ]
