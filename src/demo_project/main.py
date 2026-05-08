@@ -25,12 +25,12 @@ def main2():
     a2 = bb.add_parser("delete", help="delete the task")
     a2.add_argument("id", type=int, help="task id")
     c = aa.parse_args()
-    if not c.command:
+    if c.command is None:
         print("please input a command")
     else:
         print("the command you enter is ", c.command)
         if c.command == "add":
-            if not c.title:
+            if c.title is None:
                 print("please input a title")
                 return
             else:
