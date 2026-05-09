@@ -3,15 +3,19 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "my-project"
+name = "demo-project"
 version = "0.1.0"
-description = "My first python project"
-requires-python = ">=3.11"
+description = "A simple todo  command line app"
+requires-python = ">=3.10"
 
-[tool.pytest.ini_options]
-pythonpath = ["src"]
+[project.scripts]
+todo = "demo_project.main:main2"
 
-testpaths = ["tests"]
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+]
 
 [tool.ruff]
 line-length = 88

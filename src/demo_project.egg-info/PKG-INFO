@@ -1,6 +1,8 @@
 Metadata-Version: 2.4
-Name: demo_project
+Name: demo-project
 Version: 0.1.0
-Summary: My first engineered Python project
+Summary: A simple todo  command line app
 Requires-Python: >=3.10
-Description-Content-Type: text/markdown
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
