@@ -2,14 +2,18 @@ import argparse
 from pathlib import Path
 
 from demo_project.models import s
-from demo_project.service import f, g, h
+from demo_project.service import TaskNotFoundError, f, g, h
 from demo_project.storage import load_storage, save_storage
 
 
-def main1(x: list[s]) -> None:
-    for i in x:
-        print(i.a, i.b, i.c)
-    return
+def main1(x: list) -> None:
+    if not x:
+        print("there is no task")
+        return
+    else:
+        for i in x:
+            print(i)
+        return
 
 
 def build_parser():
@@ -68,21 +72,23 @@ def main2():
         return
     else:
         print("the command you enter is ", c.command)
-        if c.command == "add":
-            handle_add(a, b, c)
-            return
-        elif c.command == "list":
-            main1(b)
-            return
-        elif c.command == "done":
-            handle_done(a, b, c)
-            return
-        elif c.command == "delete":
-            handle_delete(a, b, c)
-            return
-        else:
-            print("please enter a proper command")
-            return
+        try:
+            if c.command == "add":
+                handle_add(a, b, c)
+                return
+            elif c.command == "list":
+                main1(b)
+                return
+            elif c.command == "done":
+                handle_done(a, b, c)
+                return
+            elif c.command == "delete":
+                handle_delete(a, b, c)
+                return
+            else:
+                print("the command {c.command} is not found")
+        except TaskNotFoundError as e:
+            print(e)
 
 
 if __name__ == "__main__":

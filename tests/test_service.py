@@ -1,4 +1,6 @@
-from demo_project.service import f, g, h
+import pytest
+
+from demo_project.service import TaskNotFoundError, f, g, h
 
 
 def test1() -> None:
@@ -28,3 +30,19 @@ def test3() -> None:
     assert b.b == "wuyihan"
     assert not b.c
     assert len(a) == 0
+
+
+def test_done_task_not_found() -> None:
+    a = []
+    b = f(a, "wuyihan")
+    a.append(b)
+    with pytest.raises(TaskNotFoundError):
+        g(a, 1111)
+
+
+def test_delete_task_not_found() -> None:
+    a = []
+    b = f(a, "wuyihan")
+    a.append(b)
+    with pytest.raises(TaskNotFoundError):
+        h(a, 1111)

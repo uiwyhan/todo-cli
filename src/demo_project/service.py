@@ -1,26 +1,28 @@
 from demo_project.models import s
 
 
-def f(x: list[s], y: str):
-    if not y:
-        raise ValueError("there can be nothing")
-    a = max((i.a for i in x), default=0) + 1
-    b = s(a, y)
-    x.append(b)
-    return b
+class TaskNotFoundError(Exception):
+    pass
 
 
-def g(x: list[s], y: int):
+def g(x: list, y: int) -> classmethod:
     for i in x:
         if i.a == y:
             i.c = True
             return i
-    raise ValueError("there is no task")
+        raise TaskNotFoundError("the task-id is not found")
 
 
-def h(x: list[s], y: int):
+def h(x: list, y: int) -> classmethod:
     for i in x:
         if i.a == y:
             x.remove(i)
             return i
-    raise ValueError("there is no task")
+        raise TaskNotFoundError("the task is not found")
+
+
+def f(x: list, y: str) -> classmethod:
+    a: int = max((i.a for i in x), default=0) + 1
+    b = s(a, y)
+    x.append(b)
+    return b
