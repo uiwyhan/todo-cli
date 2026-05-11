@@ -1,4 +1,5 @@
 import argparse
+from argparse import Namespace
 from pathlib import Path
 
 from demo_project.models import s
@@ -6,11 +7,11 @@ from demo_project.service import TaskNotFoundError, f, g, h
 from demo_project.storage import load_storage, save_storage
 
 
-def get_path():
+def get_path() ->Path:
     return Path.home() / ".todo-cli" / "www.json"
 
 
-def main1(x: list) -> None:
+def main1(x: list[s]) -> None:
     if not x:
         print("there is no task")
         return
@@ -20,7 +21,7 @@ def main1(x: list) -> None:
         return
 
 
-def build_parser():
+def build_parser()->Namespace:
     a = argparse.ArgumentParser(description="ArgumentParser")
     a.add_argument(
         "--data-file", type=Path, default=get_path(), help="path to the task data file"
@@ -37,7 +38,7 @@ def build_parser():
     return iiii
 
 
-def handle_add(x: Path, y: list[s], z) -> None:
+def handle_add(x: Path, y: list[s], z:Namespace) -> None:
     if z.title is None:
         print("please enter a title")
         return
@@ -48,7 +49,7 @@ def handle_add(x: Path, y: list[s], z) -> None:
         return
 
 
-def handle_done(x: Path, y: list[s], z) -> None:
+def handle_done(x: Path, y: list[s], z:Namespace) -> None:
     if z.id is None:
         print("please input a number")
         return
@@ -59,7 +60,7 @@ def handle_done(x: Path, y: list[s], z) -> None:
         return
 
 
-def handle_delete(x: Path, y: list, z) -> None:
+def handle_delete(x: Path, y: list[s], z:Namespace) -> None:
     if z.id is None:
         print("please input a id")
         return
@@ -70,7 +71,7 @@ def handle_delete(x: Path, y: list, z) -> None:
         return
 
 
-def main2():
+def main2()->None:
     c = build_parser()
     a: Path = c.data_file
     b: list[s] = load_storage(a)

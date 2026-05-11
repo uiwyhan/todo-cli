@@ -5,7 +5,7 @@ class TaskNotFoundError(Exception):
     pass
 
 
-def g(x: list, y: int):
+def g(x: list[s], y: int)->s:
     for i in x:
         if i.a == y:
             i.c = True
@@ -13,7 +13,7 @@ def g(x: list, y: int):
     raise TaskNotFoundError(f"the task {y} is not found")
 
 
-def h(x: list, y: int):
+def h(x: list[s], y: int)->s:
     for i in x:
         if i.a == y:
             x.remove(i)
@@ -21,7 +21,7 @@ def h(x: list, y: int):
     raise TaskNotFoundError(f"the task {y} is not found")
 
 
-def f(x: list, y: str):
+def f(x: list[s], y: str)->s:
     a: int = max((i.a for i in x), default=0) + 1
     b = s(a, y)
     x.append(b)

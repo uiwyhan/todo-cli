@@ -4,7 +4,7 @@ from pathlib import Path
 from demo_project.models import s
 
 
-def save_storage(x: Path, y: list) -> None:
+def save_storage(x: Path, y: list[s]) -> None:
     x.parent.mkdir(parents=True, exist_ok=True)
     a = []
     for i in y:
@@ -18,7 +18,7 @@ def save_storage(x: Path, y: list) -> None:
     x.write_text(c, encoding="utf-8")
 
 
-def load_storage(x: Path) -> list:
+def load_storage(x: Path) -> list[s]:
     if not x.exists():
         print("there is no this Path")
         return []
