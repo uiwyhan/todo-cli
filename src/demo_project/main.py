@@ -6,6 +6,10 @@ from demo_project.service import TaskNotFoundError, f, g, h
 from demo_project.storage import load_storage, save_storage
 
 
+def get_path():
+    return Path.home() / ".todo-cli" / "www.json"
+
+
 def main1(x: list) -> None:
     if not x:
         print("there is no task")
@@ -18,6 +22,9 @@ def main1(x: list) -> None:
 
 def build_parser():
     a = argparse.ArgumentParser(description="ArgumentParser")
+    a.add_argument(
+        "--data-file", type=Path, default=get_path(), help="path to the task data file"
+    )
     b = a.add_subparsers(dest="command", required=True, help="add subparsers")
     c = b.add_parser("add", help="add")
     c.add_argument("title", help="title")
@@ -64,9 +71,10 @@ def handle_delete(x: Path, y: list, z) -> None:
 
 
 def main2():
-    a: Path = Path("www.json")
-    b: list[s] = load_storage(a)
     c = build_parser()
+    a: Path = c.data_file
+    b: list[s] = load_storage(a)
+
     if c.command is None:
         print("please input a command")
         return

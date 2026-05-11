@@ -19,3 +19,16 @@ def test2(tmp_path):
     a = tmp_path / "aaa.json"
     b = load_storage(a)
     assert b == []
+
+
+def test_save_tasks_creats_parent_directory(tmp_path) -> None:
+    a = tmp_path / ".todo_cli" / "www.json"
+    b = [s(1, "wuyihan")]
+    save_storage(a, b)
+    c = load_storage(a)
+    assert a.exists()
+    assert b == c
+    assert b[0].a == 1
+    assert b[0].b == "wuyihan"
+    assert len(b) == 1
+    assert b[0].c is False

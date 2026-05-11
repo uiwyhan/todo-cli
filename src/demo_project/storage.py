@@ -5,11 +5,16 @@ from demo_project.models import s
 
 
 def save_storage(x: Path, y: list) -> None:
-    b = []
+    x.parent.mkdir(parents=True, exist_ok=True)
+    a = []
     for i in y:
-        a = {"a": i.a, "b": i.b, "c": i.c}
-        b.append(a)
-    c = json.dumps(b, ensure_ascii=False, indent=4)
+        b = {
+            "a": i.a,
+            "b": i.b,
+            "c": i.c,
+        }
+        a.append(b)
+    c = json.dumps(a, ensure_ascii=False, indent=4)
     x.write_text(c, encoding="utf-8")
 
 
