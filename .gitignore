@@ -6,10 +6,12 @@ __pycache__/
 # Test and lint cache
 .pytest_cache/
 .ruff_cache/
+.mypy_cache/
 # Virtural environment
 .venv/
 venv/
 #Built artifacts
 dist/
 build/
-*_edge-info/
+*_egg-info/
+.coverage/
