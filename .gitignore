@@ -1,5 +1,6 @@
 # Local date
 abc.json
+aaaa.json
 # Python cache
 __pycache__/
 *.py[cod]
@@ -16,4 +17,4 @@ build/
 *_egg-info/
 .coverage/
 htmlcov/
-src/demo_project/__pycache__
+
