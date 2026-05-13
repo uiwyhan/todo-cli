@@ -15,3 +15,5 @@ dist/
 build/
 *_egg-info/
 .coverage/
+htmlcov/
+src/demo_project/__pycache__

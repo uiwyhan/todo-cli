@@ -1,28 +1,20 @@
 from demo_project.models import s
 
 
-class TaskNotFoundError(Exception):
-    pass
+def average_score(x: list[s]) -> float:
+    if not x:
+        print("there is no scores")
+        return 0.0
+    else:
+        a = sum([i.b for i in x])
+        b = len([i for i in x])
+        return a / b
 
 
-def g(x: list[s], y: int)->s:
-    for i in x:
-        if i.a == y:
-            i.c = True
-            return i
-    raise TaskNotFoundError(f"the task {y} is not found")
-
-
-def h(x: list[s], y: int)->s:
-    for i in x:
-        if i.a == y:
-            x.remove(i)
-            return i
-    raise TaskNotFoundError(f"the task {y} is not found")
-
-
-def f(x: list[s], y: str)->s:
-    a: int = max((i.a for i in x), default=0) + 1
-    b = s(a, y)
-    x.append(b)
-    return b
+def top_student(x: list[s]) -> s | None:
+    if not x:
+        print("there is no student")
+        return None
+    else:
+        a = max(x, key=lambda a: a.b)
+        return a

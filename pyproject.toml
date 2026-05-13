@@ -9,7 +9,7 @@ description = "A simple todo  command line app"
 requires-python = ">=3.10"
 
 [project.scripts]
-todo = "demo_project.main:main2"
+todo = "demo_project.main:main"
 
 [project.optional-dependencies]
 dev = [
@@ -32,3 +32,5 @@ testpaths = ["tests"]
 [tool.mypy]
 python_version = "3.11"
 strict = true
+mypy_path = "src"
+explicit_package_bases = true

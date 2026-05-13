@@ -4,13 +4,9 @@ src/demo_project/__init__.py
 src/demo_project/argparses.py
 src/demo_project/grade.py
 src/demo_project/main.py
-src/demo_project/massage.py
 src/demo_project/models.py
 src/demo_project/service.py
-src/demo_project/states.py
 src/demo_project/storage.py
-src/demo_project/subparsers.py
-src/demo_project/www.py
 src/demo_project.egg-info/PKG-INFO
 src/demo_project.egg-info/SOURCES.txt
 src/demo_project.egg-info/dependency_links.txt
@@ -20,7 +16,6 @@ src/demo_project.egg-info/top_level.txt
 tests/test_cli.py
 tests/test_grade.py
 tests/test_main.py
-tests/test_massage.py
+tests/test_models.py
 tests/test_service.py
-tests/test_states.py
 tests/test_storage.py
