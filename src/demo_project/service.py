@@ -18,3 +18,11 @@ def top_student(x: list[s]) -> s | None:
     else:
         a = max(x, key=lambda a: a.b)
         return a
+
+
+class StudentAlreadExistError(Exception):
+    pass
+
+
+class StudentNotFoundError(Exception):
+    pass

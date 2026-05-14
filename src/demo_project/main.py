@@ -2,7 +2,12 @@ from argparse import ArgumentParser, ArgumentTypeError
 from pathlib import Path
 
 from demo_project.models import s
-from demo_project.service import average_score, top_student
+from demo_project.service import (
+    StudentAlreadExistError,
+    StudentNotFoundError,
+    average_score,
+    top_student,
+)
 from demo_project.storage import load_storatge, save_storage
 
 path = Path("aaaa.json")
@@ -47,25 +52,41 @@ def handle_list(x: list[s]) -> None:
         print(f"the average is {b.b}")
 
 
+def find_student(x: list, y: str) -> s | None:
+    for i in x:
+        if i.a == y:
+            print(f"the score of the student {y} is: {i.b}")
+            return i
+
+
 def handle_add(x: list[s], y: str, z: int) -> s:
-    a = s(y, z)
-    x.append(a)
-    return a
+    if find_student(x, y) is None:
+        a = s(y, z)
+        x.append(a)
+        return a
+    else:
+        raise StudentAlreadExistError(f"the student {y} alread exist")
 
 
 def handle_delete(x: list[s], y: str) -> s | None:
-    for i in x:
-        if i.a == y:
-            x.remove(i)
-            return i
+    if find_student(x, y) is not None:
+        for i in x:
+            if i.a == y:
+                x.remove(i)
+                return i
+    else:
+        raise StudentNotFoundError(f"the student {y} not found")
     return None
 
 
 def handle_change(x: list[s], y: str, z: int) -> s | None:
-    for i in x:
-        if i.a == y:
-            i.b = z
-            return i
+    if find_student(x, y) is not None:
+        for i in x:
+            if i.a == y:
+                i.b = z
+                return i
+    else:
+        raise StudentNotFoundError(f"the student {y} is not found")
     return None
 
 
@@ -119,4 +140,8 @@ def main() -> None:
                     print("{d1} has been deleted")
                     return
     except ArgumentTypeError as error:
+        print(error)
+    except StudentAlreadExistError as error:
+        print(error)
+    except StudentNotFoundError as error:
         print(error)

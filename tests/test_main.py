@@ -1,5 +1,6 @@
 import pytest
 from pytest import CaptureFixture
+
 from demo_project.main import (
     build_parser,
     handle_add,
@@ -8,6 +9,7 @@ from demo_project.main import (
     handle_list,
 )
 from demo_project.models import s
+from demo_project.service import StudentAlreadExistError, StudentNotFoundError
 
 
 def test_add() -> None:
@@ -45,7 +47,7 @@ def test_change() -> None:
     assert a[0].b == 90
 
 
-def test_list(capsys:CaptureFixture[str]) -> None:
+def test_list(capsys: CaptureFixture[str]) -> None:
     a = [s("wuyihan", 99)]
     handle_list(a)
     b = capsys.readouterr()
@@ -58,3 +60,21 @@ def test_type_error() -> None:
         a.parse_args(["add", "wuyihan", "222"])
     with pytest.raises(SystemExit):
         a.parse_args(["add", "wuyiqina", "wwww"])
+
+
+def test_add_error() -> None:
+    a = [
+        s("wuyihan", 88),
+        s("wuyiqian", 99),
+    ]
+    with pytest.raises(StudentAlreadExistError):
+        handle_add(a, "wuyihan", 11)
+
+
+def test_delete_error() -> None:
+    a = [
+        s("wuyihan", 88),
+        s("wuyiqian", 99),
+    ]
+    with pytest.raises(StudentNotFoundError):
+        handle_delete(a, "wwww")
