@@ -1,6 +1,9 @@
-import pytest
-from pytest import CaptureFixture
+from pathlib import Path
 
+import pytest
+from pytest import CaptureFixture, MonkeyPatch
+
+import demo_project.main as tomain
 from demo_project.main import (
     build_parser,
     handle_add,
@@ -78,3 +81,28 @@ def test_delete_error() -> None:
     ]
     with pytest.raises(StudentNotFoundError):
         handle_delete(a, "wwww")
+
+
+def test_add_command(
+    tmp_path: Path, capsys: CaptureFixture[str], monkeypatch: MonkeyPatch
+) -> None:
+    a = tmp_path / "wuyihan" / "jjj.json"
+    monkeypatch.setattr(tomain, "path", a)
+    monkeypatch.setattr("sys.argv", ["todo", "add", "wuyihan", "88"])
+    b = tomain.main()
+    c = capsys.readouterr()
+    assert "the command is: add" in c.out
+    assert "s(a='wuyihan', b=88) has been added" in c.out
+    assert b == 0
+
+
+def test_list_command(
+    tmp_path: Path, capsys: CaptureFixture[str], monkeypatch: MonkeyPatch
+) -> None:
+    a = tmp_path / "wuyihan" / "jjj.json"
+    monkeypatch.setattr(tomain, "path", a)
+    monkeypatch.setattr("sys.argv", ["todo", "list"])
+    b = tomain.main()
+    c = capsys.readouterr()
+    assert f"there is no the path {a}" in c.out
+    assert "there is no student" in c.out

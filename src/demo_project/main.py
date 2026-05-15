@@ -11,6 +11,7 @@ from demo_project.service import (
 from demo_project.storage import load_storatge, save_storage
 
 path = Path("aaaa.json")
+path.parent.mkdir(parents=True, exist_ok=True)
 
 
 def score_type(x: str) -> int:
@@ -52,11 +53,12 @@ def handle_list(x: list[s]) -> None:
         print(f"the average is {b.b}")
 
 
-def find_student(x: list, y: str) -> s | None:
+def find_student(x: list[s], y: str) -> s | None:
     for i in x:
         if i.a == y:
             print(f"the score of the student {y} is: {i.b}")
             return i
+    return None
 
 
 def handle_add(x: list[s], y: str, z: int) -> s:
@@ -90,58 +92,62 @@ def handle_change(x: list[s], y: str, z: int) -> s | None:
     return None
 
 
-def main() -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
+def main() -> int:
     a = path
     b = load_storatge(a)
     c = build_parser().parse_args()
-    print("the command is: {c.command}")
+    print(f"the command is: {c.command}")
     try:
         if c.command == "add":
             if c.name is None:
                 print("please input the name of the students")
-                return
+                return 1
             elif c.score is None:
                 print("please enter the score of the student")
-                return
+                return 1
             else:
                 d = handle_add(b, c.name, c.score)
                 save_storage(a, b)
                 print(f"{d} has been added")
-                return
+                return 0
 
         elif c.command == "list":
             handle_list(b)
-            return
+            return 0
         elif c.command == "delete":
             if c.name is None:
                 print("please enter a name")
-                return
+                return 0
             else:
                 d1 = handle_delete(b, c.name)
                 if d1 is None:
                     print("there is no the student")
-                    return
+                    return 0
                 else:
                     save_storage(a, b)
                     print("{d1} has beed deleted")
-                    return
+                    return 0
         elif c.command == "change":
             if c.name is None:
                 print("please input a name")
-                return
+                return 0
             else:
                 d1 = handle_change(b, c.name, c.score)
                 if d1 is None:
                     print("there is no the student")
-                    return
+                    return 0
                 else:
                     save_storage(a, b)
                     print("{d1} has been deleted")
-                    return
+                    return 0
+        else:
+            return 1
     except ArgumentTypeError as error:
         print(error)
+        return 1
     except StudentAlreadExistError as error:
         print(error)
+        return 1
     except StudentNotFoundError as error:
         print(error)
+        return 1
