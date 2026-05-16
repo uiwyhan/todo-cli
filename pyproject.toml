@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = []
 
-[project-optional-dependencies]
+[project.optional-dependencies]
 dev = [
     "pytest",
     "ruff",
