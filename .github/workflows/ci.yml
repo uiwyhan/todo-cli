@@ -26,7 +26,7 @@ jobs:
         - name: Set up Python
           uses: actions/setup-python@v6
           with: 
-            Python-version: ${{matrix.python-version}}
+            python-version: ${{matrix.python-version}}
             cache: "pip"
 
         - name: Install dependencies
