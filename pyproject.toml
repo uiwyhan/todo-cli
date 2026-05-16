@@ -1,36 +1,43 @@
 [build-system]
-requires = ["setuptools>=61"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
-name = "demo-project"
+name = "wuyihan-python-project"
 version = "0.1.0"
-description = "A simple todo  command line app"
-requires-python = ">=3.10"
+description = "my python practice"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
 
-[project.scripts]
-todo = "demo_project.main:main"
-
-[project.optional-dependencies]
+[project-optional-dependencies]
 dev = [
     "pytest",
     "ruff",
+    "mypy",
 ]
+
+[project-scripts]
+todo = "demo_project.main:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
 [tool.ruff]
 line-length = 88
+target-version = "py311"
 
 [tool.ruff.lint]
-select = ["E","F","I"]
-
-[tool.ruff.format]
-quote-style = "double"
-
-[tool.pytest.in_options]
-testpaths = ["tests"]
+select = ["E","I","F","B","UP"]
 
 [tool.mypy]
 python_version = "3.11"
 strict = true
-mypy_path = "src"
-explicit_package_bases = true
+files = ["src"]
+
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/demo_project"]

@@ -13,7 +13,6 @@ src/demo_project.egg-info/dependency_links.txt
 src/demo_project.egg-info/entry_points.txt
 src/demo_project.egg-info/requires.txt
 src/demo_project.egg-info/top_level.txt
-tests/test_cli.py
 tests/test_grade.py
 tests/test_main.py
 tests/test_models.py

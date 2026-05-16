@@ -106,3 +106,4 @@ def test_list_command(
     c = capsys.readouterr()
     assert f"there is no the path {a}" in c.out
     assert "there is no student" in c.out
+    assert b == 0
