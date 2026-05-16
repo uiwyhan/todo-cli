@@ -21,7 +21,7 @@ def score_type(x: str) -> int:
         raise ArgumentTypeError("please input a number") from error
     if a < 0 or a > 100:
         raise ArgumentTypeError("please input a number from 0 to 100")
-    return a
+    return  a
 
 
 def build_parser() -> ArgumentParser:
